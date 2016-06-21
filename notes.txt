@@ -1,0 +1,47 @@
+angular route
+
+redirect to property allows for a hardcoded route or a function
+
+Could be used to redirect to login or if user doesn't have permissions to view route etc.
+            .when('/classrooms/:id', {
+                controller: 'AllClassroomsController',
+                controllerAs: 'classrooms',
+                templateUrl: '/app/templates/allClassrooms.html',
+                redirectTo: function (params, currPath, currSearch) {
+                    console.log(params);
+                    console.log(currPath);
+                    console.log(currSearch);
+                    return '/';
+                }
+            })
+
+caseInsensitiveMatch: true
+
+makes routes not case sensitive
+
+Can add events to the route service which will be for all route changes.
+
+    app.run(['$routeScope', '$log', function ($rootScope, $log) {
+
+        $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+            $log.debug('successfully changed routes');
+
+            $log.debug(event);
+            $log.debug(current);
+            $log.debug(previous);
+
+        });
+    }])
+
+
+# 6/14/2016  UI-Router
+
+uses states instead of url but can also use url
+
+ui-sref instead of href=
+
+get more url matchings items with ui router can match regular expressions
+
+nested states inherit controllers and params from the parent state
+
+parent state ui must have a ui-view directive in it
